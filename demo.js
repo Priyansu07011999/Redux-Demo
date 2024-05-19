@@ -1,5 +1,7 @@
 const redux = require('redux');
 
+
+// It can done using action.type == 'Increment' using if,if else  also but i prefer Switch case
 const counterReducer = (state = { counter: 0 }, action) => {
     switch (action.type) {
         case 'increment':
@@ -9,6 +11,14 @@ const counterReducer = (state = { counter: 0 }, action) => {
         case 'decrement':
             return {
                 counter: state.counter - 1
+            };
+        case 'INCREMENTBY2':
+            return {
+                counter: state.counter + 2
+            };
+        case 'DECREMENTBY2':
+            return {
+                counter: state.counter - 2
             };
         default:
             return state;
@@ -24,10 +34,7 @@ const counterSubscriber = () => {
 
 store.subscribe(counterSubscriber);
 
-// Increase the counter by a value of 5
-for (let i = 0; i < 5; i++) {
-    store.dispatch({ type: 'increment' });
-}
-
-// Decrement the counter
+store.dispatch({ type: 'increment' });
+store.dispatch({ type: 'INCREMENTBY2' });
 store.dispatch({ type: 'decrement' });
+store.dispatch({ type: 'DECREMENTBY2' });
